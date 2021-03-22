@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo I am alive"
   },
-  "repository": "amino-api/main",
+  "repository": "amino-api/aminoapps.js",
   "keywords": [
     "aminoapps",
     "amino",
