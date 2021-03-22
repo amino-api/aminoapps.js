@@ -1,0 +1,28 @@
+{
+  "name": "aminoapps.js",
+  "version": "0.0.5",
+  "description": "An api wrapper for aminoapps.com",
+  "main": "inc.js",
+  "scripts": {
+    "test": "echo I am alive"
+  },
+  "repository": "amino-api/main",
+  "keywords": [
+    "aminoapps",
+    "amino",
+    "api",
+    "bots"
+  ],
+  "author": "Seer#6054",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "chalk": "^4.1.0",
+    "events": "^3.3.0",
+    "fs": "0.0.1-security",
+    "node-fetch": "^2.6.1",
+    "reconnectingwebsocket": "^1.0.0",
+    "websocket": "^1.0.33",
+    "ws": "^7.4.4"
+  }
+}
