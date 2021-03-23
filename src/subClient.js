@@ -50,6 +50,18 @@ class subClient {
     sendMessage(chatId, content, type){
         require('./actions/sub/sendMessage').run(chatId, content, type, this.comId, this.deviceId);
     }
+
+    /**
+     * 
+     * @param {String} title Your blog title.
+     * @param {String} content Blog content.
+     * @param {String} backgroundColor Blog background color.
+     * @param {Boolean} fansOnly Is only for fans.
+     * @param {Object} extensions Object of extensions.
+     */
+    createBlog(title, content, backgroundColor, fansOnly, extensions){
+        require('./actions/sub/postBlog').run(title, content, backgroundColor, fansOnly, extensions, this.deviceId, this.comId);
+    }
 }
 
 // ? Exports for other files.
