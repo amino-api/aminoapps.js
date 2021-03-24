@@ -10,7 +10,8 @@ const npmReg = 'http://registry.npmjs.org/' + pkg.name;
 versionChecker()
 
 let options = {
-    api: "https://service.narvii.com/api/v1"
+    api: "https://service.narvii.com/api/v1",
+    new_whisper: 'https://prod.whisper.sh/user/new'
 }
 
 // ? Needed vars

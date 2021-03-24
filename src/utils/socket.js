@@ -1,3 +1,6 @@
+// * Big thanks to okok#7711 for helping me maintain this project.
+// * Also thanks for helping with debugging.
+
 let socket = require('ws');
 const debugMode = require('./conf.json').debug;
 
@@ -17,7 +20,6 @@ function connect(connectObj){
             "NDCAUTH": constuctor.auth
         }
     });
-
     conn.on('close', (clx) => {
         console.log('[WS | CLOSED]', clx)
 
@@ -40,6 +42,13 @@ function connect(connectObj){
     conn.on('error', (err) => {
         console.log('[WS Error]', err)
     })
+
+    conn.on("pong", (d) => {
+        conn.pong("pong", true, (e) => {
+            if (e) console.log(e);
+        })
+    })
+
 }
 
 function onMsgHandler(cb){
@@ -52,10 +61,8 @@ function onMsgHandler(cb){
 
         const newMsg = JSON.parse(msg).o.chatMessage
 
-        if(!msg) {
-            console.log(filteredMsg)
-            return cb(filteredMsg)
-        }
+        if(!msg || !newMsg) return;
+
         filteredMsg = {
             ndcId: JSON.parse(msg).o.ndcId,
             message: {
@@ -97,17 +104,15 @@ class WebSocket {
         this.auth = ndcauth;
         //? if the user has no client.db
         if(!this.auth) return console.log('[WS Error] No ndcauth found!');
-
         thisConn = this;
-
         connect(this)
-
         setInterval(() => {
             if(debugMode){
-                console.log('[WS | DEBUG] RESTARTING WS');
+                console.log('[WS | DEBUG] Pinging WS');
             }
-            conn.close();
-            connect(this);
+            conn.ping("ping", true, (e) => {
+                if(e) console.log(e);
+            });
         }, 30000);
     }
 
