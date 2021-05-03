@@ -6,9 +6,7 @@ const error = require('../../utils/error');
 const db = require('../data/user.json');
 var wait = ms => new Promise((r, j) => setTimeout(r, ms))
 
-async function run(title, content, backgroundColor, fansOnly, extensions, deviceId, cid) {
-
-
+async function run(title, content, backgroundColor, fansOnly, deviceId, cid) {
     let fansonlyStatus = true;
     if(fansOnly !== true) fansonlyStatus = false;
 

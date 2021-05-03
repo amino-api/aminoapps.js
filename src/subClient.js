@@ -32,23 +32,12 @@ class subClient {
 
     /**
      * 
-     * @param {String} comId Community ID.
-     * @param {Function} cb Callback to get data from response.
-     * ? Non functional yet.
+     * @param {String} message Message content.
+     * @param {String} chatId Id of the chat.
+     * @param {Number} messageType The type of message.
      */
-    // getCommunityInfo(comId, cb){
-    //     require('./actions/sub/getCommunityInfo.js').run(comId, cb, this.deviceId);
-    // }
-
-    /**
-     * 
-     * @param {String} chatId The chat id.
-     * @param {String} content Message content.
-     * @param {number} type Message type.
-     * @returns {string} undefined 
-     */
-    sendMessage(chatId, content, type){
-        require('./actions/sub/sendMessage').run(chatId, content, type, this.comId, this.deviceId);
+    sendMessage(message, chatId, messageType){
+        require('./actions/sub/sendMessage').run(message, chatId, messageType, this.comId, this.deviceId);
     }
 
     /**
@@ -61,6 +50,38 @@ class subClient {
      */
     createBlog(title, content, backgroundColor, fansOnly, extensions){
         require('./actions/sub/postBlog').run(title, content, backgroundColor, fansOnly, extensions, this.deviceId, this.comId);
+    }
+
+    /**
+     * 
+     * @param {String} blogId Id of the blog.
+     */
+     deleteBlog(blogId){
+        require('./actions/sub/deleteBlog').run(blogId, this.deviceId, this.comId);
+    }
+
+    /**
+     * 
+     * @param {String} wikiId Id of the wiki.
+     */
+     deleteWiki(wikiId){
+        require('./actions/sub/deleteWiki').run(wikiId, this.deviceId, this.comId);
+    }
+
+    /**
+     * 
+     * @param {String} comment Repost comment.
+     * @param {String} blogId Id of the blog.
+     */
+     repostBlog(comment, blogId){
+        require('./actions/sub/repostBlog').run(comment, blogId, this.deviceId, this.comId);
+    }
+
+    /**
+     * @param {Number} timezone Timezone of the checkin.
+     */
+     checkIn(timezone){
+        require('./actions/sub/checkIn').run(timezone, this.deviceId, this.comId);
     }
 }
 

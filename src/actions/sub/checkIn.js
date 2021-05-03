@@ -2,26 +2,26 @@ const fetch = require('node-fetch');
 const sysHeaders = require('../../utils/headers')
 const client = require('../../client');
 
-async function run(message, chatId, messageType, comId, deviceId) {
+async function run(timezone, deviceId) {
     const headers = sysHeaders(deviceId);
     
-    let msgType = 0;
+    let tz;
 
-    if(messageType != null) {
-        msgType = messageType;
+    if (timezone != undefined) {
+        tz = timezone
+    } else {
+        tz = 0
     }
 
     const postData = {
-        "type": msgType,
-        "content": message,
-        "clientRefId": (Date.now() * 1000) / 10 % 1000000000,
+        "timezone": tz,
         "timestamp": Date.now() * 1000
     }
 
-    fetch(`${client.options.api}/x${comId}/s/chat/thread/${chatId}/message`, {
+    fetch(`${client.options.api}/x${comId}/s/check-in`, {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify(postData),
+        body: JSON.stringify(postData)
     }).then((res) => {
         out = res.status
     });
